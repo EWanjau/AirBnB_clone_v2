@@ -9,16 +9,16 @@ env.user = 'ubuntu'
 env.hosts = ['100.25.157.156', '100.25.215.129']
 
 
-def do_deploy(versions/web_static_20240501125237.tgz):
+def do_deploy('versions/web_static_20240501125237.tgz'):
     """function to deploy an archive to the servers"""
-    if path.exists(versions/web_static_20240501125237.tgz) is False:
+    if path.exists('versions/web_static_20240501125237.tgz') is False:
         return False
 
-    archive = versions/web_static_20240501125237.tgz.split('/')[1]
+    archive = 'versions/web_static_20240501125237.tgz'.split('/')[1]
     folder = archive[:-4]
 
     try:
-        put(versions/web_static_20240501125237.tgz, "/tmp/")
+        put('versions/web_static_20240501125237.tgz', "/tmp/")
         run("mkdir -p /data/web_static/releases/{}".format(folder))
         run("tar -xzf /tmp/{} -C \
             /data/web_static/releases/{}".format(archive, folder))
@@ -33,3 +33,4 @@ def do_deploy(versions/web_static_20240501125237.tgz):
         return True
     except:
         return False
+
